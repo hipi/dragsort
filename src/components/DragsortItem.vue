@@ -1,15 +1,17 @@
 <template>
-  <div>asdsd</div>
+  <div class="fc-dragsort-item" draggable="isDraggable">
+    <div class="fc-dragsort-item__container">
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      as: '',
+      isDraggable: true,
     }
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

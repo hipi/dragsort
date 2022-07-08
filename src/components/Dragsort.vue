@@ -1,15 +1,24 @@
 <template>
-  <div>asdsd</div>
+  <div class="fc-dragsort" @dragover="handleDragover">
+    <slot />
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
+  name: 'FcDragsort',
+  provide() {
     return {
-      as: '',
+      dragsort: this,
     }
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    handleDragover(e) {
+      e.preventDefault()
+    },
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

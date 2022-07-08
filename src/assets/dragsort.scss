@@ -1,0 +1,20 @@
+.fc-dragsort {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -8px;
+  margin-left: -8px;
+}
+
+.fc-dragsort-item {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 8px;
+  margin-bottom: 16px;
+  .fc-dragsort-item__container {
+    cursor: grab;
+    padding: 12px;
+    height: 100%;
+    border: 1px solid #333;
+    border-radius: 3px;
+  }
+}

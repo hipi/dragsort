@@ -9,6 +9,7 @@
 <script>
 import DragsortItem from './components/DragsortItem.vue'
 import Dragsort from './components/Dragsort.vue'
+import '@/assets/dragsort.scss'
 export default {
   components: { Dragsort, DragsortItem },
 }
