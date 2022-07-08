@@ -1,16 +1,26 @@
 <template>
   <div id="app">
-    <Dragsort>
-      <DragsortItem>asdasdasdasd</DragsortItem>
-      <DragsortItem>asdasdasd</DragsortItem>
+    {{ a }}
+    <Dragsort :colum="3" :sort-data.sync="a">
+      <template slot-scope="scope"> {{ scope }} </template>
     </Dragsort>
   </div>
 </template>
 <script>
-import DragsortItem from './components/DragsortItem.vue'
 import Dragsort from './components/Dragsort.vue'
 import '@/assets/dragsort.scss'
 export default {
-  components: { Dragsort, DragsortItem },
+  components: { Dragsort },
+  data() {
+    return {
+      a: [1, 22, 333, 4444, 55555, 666666],
+    }
+  },
 }
 </script>
+
+<style scoped>
+.custm {
+  height: 100px;
+}
+</style>
