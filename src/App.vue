@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    {{ a }}
-    <Dragsort :colum="3" :sort-data.sync="a">
-      <template slot-scope="scope"> {{ scope }} </template>
+    {{ testData }}
+    <Dragsort :colum="3" :sort-data="testData" @sort="handleSort">
+      <template slot-scope="{ item }"> {{ item }} </template>
     </Dragsort>
   </div>
 </template>
@@ -13,8 +13,23 @@ export default {
   components: { Dragsort },
   data() {
     return {
-      a: [1, 22, 333, 4444, 55555, 666666],
+      testData: [
+        { label: '1', value: 1 },
+        { label: '2', value: 2 },
+        { label: '3', value: 3 },
+        { label: '4', value: 4 },
+        { label: '5', value: 5 },
+        { label: '6', value: 6 },
+      ],
     }
+  },
+  methods: {
+    handleSort(data) {
+      console.log(
+        '🚀 ~ data',
+        data.map((item) => item.value)
+      )
+    },
   },
 }
 </script>

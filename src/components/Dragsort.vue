@@ -1,7 +1,7 @@
 <template>
   <div class="fc-dragsort" @dragover="handleDragover">
-    <DragsortItem v-for="(item, $index) in sortData" :key="$index" :item="item">
-      <slot :$index="$index" :item="item" />
+    <DragsortItem v-for="(list, $index) in ghostSortData" :key="list._id" :_id="list._id" :item="list.value" :index="$index">
+      <slot :$index="$index" :item="list.value" />
     </DragsortItem>
   </div>
 </template>
@@ -26,28 +26,38 @@ export default {
       default: () => [],
     },
   },
-  watch: {
-    dragEl(val) {
-      console.log('dragEl:', val?.innerHTML)
-    },
-    targetEl(val) {
-      console.log('targetEl:', val?.innerHTML)
-    },
-  },
   data() {
     return {
       dragEl: null,
       targetEl: null,
-      dragKey: null,
+      dragIndex: null,
+      dragId: null,
+      ghostSortData: [],
     }
+  },
+  watch: {
+    sortData: {
+      handler(data) {
+        this.ghostSortData = data.map((list, index) => ({
+          _id: index + JSON.stringify(list),
+          value: list,
+        }))
+      },
+      deep: true,
+      immediate: true,
+    },
   },
   methods: {
     handleDragover(e) {
       e.preventDefault()
     },
-    _setNewSortData(sortData) {
-      this.$emit('onSort', sortData)
-      this.$emit('update:sortData', sortData)
+    _setGhostSortData(sortData) {
+      this.ghostSortData = sortData
+    },
+    _setRealSortData() {
+      const realSortData = this.ghostSortData.map((item) => item.value)
+      this.$emit('sort', realSortData)
+      this.$emit('update:sortData', realSortData)
     },
   },
 }

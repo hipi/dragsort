@@ -824,7 +824,7 @@
             parentEl = dragEl.parentNode // actualization
 
             this._animate(dragRect, dragEl)
-            this._animate(targetRect, target)
+            // this._animate(targetRect, target)
           }
         }
       }
